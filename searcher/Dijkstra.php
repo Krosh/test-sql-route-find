@@ -58,7 +58,7 @@ class Dijkstra extends AbstractSearcher {
         // проход от целевого узла до стартового
         while (isset($parents[$currentNode]) && $parents[$currentNode]) {
             $path->push($currentNode);
-            $dist += $this->graph[$currentNode][$parents[$currentNode]]; // добавим дистанцию для предшествующих
+            $dist += $this->graph[$parents[$currentNode]][$currentNode]; // добавим дистанцию для предшествующих
             $currentNode = $parents[$currentNode];
         }
 
@@ -76,7 +76,7 @@ class Dijkstra extends AbstractSearcher {
                 echo $sep, $v;
                 $sep = '->';
             }
-            echo "n";
+            echo PHP_EOL;
         }
     }
 }

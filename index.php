@@ -9,7 +9,8 @@ require ('importer.php');
 $searcher = new Dijkstra($graph);
 
 $startTime = time();
-$result = $searcher->search(1, 450);
+for ($i = 0; $i < 100; $i++) {
+    $result = $searcher->search(rand(1,450), rand(1,450));
+}
 $endTime = time();
-echo PHP_EOL;
-var_dump(($endTime - $startTime) );
+var_dump(($endTime - $startTime)/ 100 );
