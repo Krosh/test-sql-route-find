@@ -10,6 +10,7 @@ $searcher = new Dijkstra($graph);
 
 $startTime = time();
 for ($i = 0; $i < 100; $i++) {
+//    $result = $searcher->search(1, 450);
     $result = $searcher->search(rand(1,450), rand(1,450));
 }
 $endTime = time();

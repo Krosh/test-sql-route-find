@@ -30,10 +30,14 @@ class Dijkstra extends AbstractSearcher {
         $queue->insert($from, 0);
 //        $wasVisited = [];
 
+        $n = 0;
         while (!$queue->isEmpty()) {
             // извлечем минимальную цену
+            $n++;
             $currentNode = $queue->extract();
-//            var_dump($currentNode);
+            if ($currentNode == $to) {
+                break;
+            }
             if (!empty($this->graph[$currentNode])/* && !isset($wasVisited[$currentNode])*/) {
 //                $wasVisited[$currentNode] = true;
                 // пройдемся по всем соседним узлам
@@ -42,7 +46,7 @@ class Dijkstra extends AbstractSearcher {
                     $currentCost = $distances[$currentNode] + $cost;
                     // если он оказался короче
                     if ($currentCost < $distances[$v]) {
-                        $queue->insert($v, $currentCost);
+                        $queue->insert($v, -$currentCost);
                         $distances[$v] = $currentCost; // update minimum length to vertex установим как минимальное расстояние до этого узла
                         $parents[$v] = $currentNode;  // добавим соседа как предшествующий этому узла
                     }
