@@ -1,0 +1,3 @@
+
+Warning: fopen(insertQuery.txt): failed to open stream: Permission denied in C:\OSPanel\domains\www.search.loc\generate.php on line 8
+end

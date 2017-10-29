@@ -1,0 +1,1 @@
+SELECT a.id, a.idRoute, b.id, b.idRoute, b.toTime FROM routes a INNER JOIN routes b ON a.to = b.from WHERE 1=1  AND a.toTime < b.fromTime

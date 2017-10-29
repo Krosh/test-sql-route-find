@@ -62,7 +62,7 @@ function test($db, $name, $numSteps, $from = false, $to = false) {
     return $endTime - $startTime;
 }
 
-function complexTest($db, $name, $numSteps, $numExperiments = 20) {
+function complexTest($db, $name, $numSteps, $numExperiments = 100) {
     $maxPoints = 500;
     $totalTime = 0;
     for ($i = 0; $i < $numExperiments; $i++) {
