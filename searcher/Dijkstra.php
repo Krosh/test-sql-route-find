@@ -23,26 +23,26 @@ class Dijkstra extends AbstractSearcher {
         foreach ($this->graph as $v => $fromArray) {
             $distances[$v] = INF; // устанавливаем изначальные расстояния как бесконечность
             $parents[$v] = null; // никаких узлов позади нет
-            foreach ($fromArray as $w => $cost) {
-                // воспользуемся ценой связи как приоритетом
-                $queue->insert($w, $cost);
-            }
         }
 
         // начальная дистанция на стартовом узле - 0
         $distances[$from] = 0;
+        $queue->insert($from, 0);
+//        $wasVisited = [];
 
         while (!$queue->isEmpty()) {
             // извлечем минимальную цену
             $currentNode = $queue->extract();
 //            var_dump($currentNode);
-            if (!empty($this->graph[$currentNode])) {
+            if (!empty($this->graph[$currentNode])/* && !isset($wasVisited[$currentNode])*/) {
+//                $wasVisited[$currentNode] = true;
                 // пройдемся по всем соседним узлам
                 foreach ($this->graph[$currentNode] as $v => $cost) {
                     // установим новую длину пути для соседнего узла
                     $currentCost = $distances[$currentNode] + $cost;
                     // если он оказался короче
                     if ($currentCost < $distances[$v]) {
+                        $queue->insert($v, $currentCost);
                         $distances[$v] = $currentCost; // update minimum length to vertex установим как минимальное расстояние до этого узла
                         $parents[$v] = $currentNode;  // добавим соседа как предшествующий этому узла
                     }
